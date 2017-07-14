@@ -100,6 +100,8 @@ class message_output_fbnotifier extends message_output {
 	
 		$ch = curl_init($CFG->fbnotifierurl . $CFG->fbnotifieraccesstoken);
 		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_VERBOSE, false);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $response);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
 		curl_exec($ch);
