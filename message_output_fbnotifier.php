@@ -52,7 +52,7 @@ class message_output_fbnotifier extends message_output {
 		}
 		
 		// Skip any messaging that does not provide usageconditions property (or its value is false).
-		if (!isset($eventdata->userto->profile_field_usageconditions) or 
+		if (isset($eventdata->userto->profile_field_usageconditions) and 
 				($eventdata->userto->profile_field_usageconditions == false)) {
 			return true;
 		}
