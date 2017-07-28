@@ -54,7 +54,10 @@ class message_output_fbnotifier_observer {
 			$message->name = 'coursemodulecreated';
 			$message->userfrom = get_admin();
 			$message->userto = $user;
-			$message->subject = '';
+		
+			// I'm using this field to decide whether I must send the message immediately or not.
+			// I have to change this before, using $message->set_additional_content('email', $content); method. 
+			$message->subject = 'no';
 			$message->fullmessage = '';
 			$message->fullmessageformat = FORMAT_PLAIN;
 			$message->fullmessagehtml = '';
@@ -88,7 +91,7 @@ class message_output_fbnotifier_observer {
 		$message->name = 'coursemodulegraded';
 		$message->userfrom = $user_that_provided_the_grade;
 		$message->userto = $user_that_receipt_the_grade;
-		$message->subject = '';
+		$message->subject = 'yes';
 		$message->fullmessage = '';
 		$message->fullmessageformat = FORMAT_PLAIN;
 		$message->fullmessagehtml = '';
@@ -129,7 +132,7 @@ class message_output_fbnotifier_observer {
 
  				$message->userfrom = $user_that_creates_a_communication;
 				$message->userto = core_user::get_user($user->id);;
-				$message->subject = '';
+				$message->subject = 'no';
 				$message->fullmessage = '';
 				$message->fullmessageformat = FORMAT_PLAIN;
 				$message->fullmessagehtml = '';
@@ -163,12 +166,12 @@ class message_output_fbnotifier_observer {
         $message->name = 'userprofileupdated';
         $message->userfrom = get_admin();
         $message->userto = $user;
-        $message->subject = '';
+        $message->subject = 'yes';
         $message->fullmessage = '';
         $message->fullmessageformat = FORMAT_PLAIN;
         $message->fullmessagehtml = '';
         $message->smallmessage = get_string_manager()->get_string('userprofileupdatedmessage', 'message_fbnotifier');
-        
+		
         message_send($message);        	
 	}
 }

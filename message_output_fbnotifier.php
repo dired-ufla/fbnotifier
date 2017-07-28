@@ -33,7 +33,7 @@ class message_output_fbnotifier extends message_output {
      */
     function send_message($eventdata) {
 		global $DB;
-		
+		global $CFG;
         
         // Skip any messaging that does not provide courseid property.
 		if (!isset($eventdata->courseid) or empty($eventdata->courseid)) {
@@ -97,17 +97,28 @@ class message_output_fbnotifier extends message_output {
                 }";
 		}
 	
-		// create the instance
-		$task = new message_fbnotifier_notificationtask();
-		// add custom data
-		$task->set_custom_data(array(
-			'response' => $response
-		));
-		// queue it
-		\core\task\manager::queue_adhoc_task($task);
-
+		// Send the message immediately. Otherwise, the message will be sent by a cron task. 
+		if (isset($eventdata->subject) and ($eventdata->subject == 'yes')) {
+			$ch = curl_init($CFG->fbnotifierurl . $CFG->fbnotifieraccesstoken);
+			curl_setopt($ch, CURLOPT_POST, true);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_VERBOSE, false);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $response);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+			curl_exec($ch);
+			curl_close($ch);
+		} else {
+			// create the instance
+			$task = new message_fbnotifier_notificationtask();
+			// add custom data
+			$task->set_custom_data(array(
+				'response' => $response
+			));
+			// queue it
+			\core\task\manager::queue_adhoc_task($task);		
+		}
 		
-		return true;
+		return true;		
     }
 
     /**
