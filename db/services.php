@@ -27,7 +27,7 @@ $functions = array(
                 'classname'   => 'message_fbnotifier_external',
                 'methodname'  => 'edit_user_profile',
                 'classpath'   => 'message/output/fbnotifier/externallib.php',
-                'description' => 'Include the facebook id int the user profile.',
+                'description' => 'Include the facebook id into the user profile.',
                 'type'        => 'read',
         )
 );

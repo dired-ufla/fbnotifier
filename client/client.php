@@ -31,7 +31,7 @@ $domainname = 'http://localhost/moodle33';
 $functionname = 'message_fbnotifier_edit_user_profile';
 
 /// PARAMETERS
-$params = array('teste', 123);
+$params = array('admin', 123);
 
 ///// XML-RPC CALL
 header('Content-Type: text/plain');

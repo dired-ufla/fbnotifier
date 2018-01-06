@@ -22,6 +22,7 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 require_once($CFG->libdir . "/externallib.php");
+require_once($CFG->dirroot.'/user/profile/lib.php'); 
 
 class message_fbnotifier_external extends external_api {
 
@@ -32,7 +33,7 @@ class message_fbnotifier_external extends external_api {
     public static function edit_user_profile_parameters() {
         return new external_function_parameters(
                 array(
-					'user_login' => new external_value(PARAM_TEXT, 'The login of the user whose profile will be updated.'),
+					'username' => new external_value(PARAM_TEXT, 'The username of the user whose profile will be updated.'),
 					'facebook_id' => new external_value(PARAM_INT, 'The id of the user facebook account')
 				)
         );
@@ -42,13 +43,15 @@ class message_fbnotifier_external extends external_api {
      * Returns welcome message
      * @return string welcome message
      */
-    public static function edit_user_profile($user_login, $facebook_id) {
+    public static function edit_user_profile($username, $facebook_id) {
         global $USER;
-
-        //Parameter validation
+		global $DB;
+		global $CFG;
+			
+		//Parameter validation
         //REQUIRED
         $params = self::validate_parameters(self::edit_user_profile_parameters(),
-                array('user_login' => $user_login, 'facebook_id' => $facebook_id));
+                array('username' => $username, 'facebook_id' => $facebook_id));
 
         //Context validation
         //OPTIONAL but in most web service it should present
@@ -61,7 +64,24 @@ class message_fbnotifier_external extends external_api {
             throw new moodle_exception('cannoteditprofile');
         }
 
-        return $params['user_login'] . ', ' . $params['facebook_id'] . ', ' . $USER->firstname ;;
+		$user_to_be_updated = $DB->get_record('user', array('username' => $username));
+        
+        if ($user_to_be_updated == null) {
+			return 0; 
+		}
+        
+        profile_load_data($user_to_be_updated);
+        
+        if (!isset($user_to_be_updated->profile_field_fbmessengerid)) {
+			return 0; 
+		}
+        
+        $user_to_be_updated->profile_field_fbmessengerid = $facebook_id;
+		profile_save_data($user_to_be_updated);
+		
+		$DB->update_record('user', $user_to_be_updated); 
+		
+        return $user_to_be_updated->username . ' ' .$user_to_be_updated->profile_field_fbmessengerid;
     }
 
     /**
