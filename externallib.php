@@ -60,8 +60,8 @@ class message_fbnotifier_external extends external_api {
 
         //Capability checking
         //OPTIONAL but in most web service it should present
-        if (!has_capability('moodle/user:editprofile', $context)) {
-            throw new moodle_exception('cannoteditprofile');
+        if (!has_capability('moodle/course:create', $context)) {
+           return 0;
         }
 
 		$user_to_be_updated = $DB->get_record('user', array('username' => $username));
@@ -72,16 +72,17 @@ class message_fbnotifier_external extends external_api {
         
         profile_load_data($user_to_be_updated);
         
-        if (!isset($user_to_be_updated->profile_field_fbmessengerid)) {
+        if (!isset($user_to_be_updated->profile_field_fbmessengerid) or !isset($user_to_be_updated->profile_field_usageconditions)) {
 			return 0; 
 		}
         
         $user_to_be_updated->profile_field_fbmessengerid = $facebook_id;
+		$user_to_be_updated->profile_field_usageconditions = true;
 		profile_save_data($user_to_be_updated);
 		
 		$DB->update_record('user', $user_to_be_updated); 
 		
-        return $user_to_be_updated->username . ' ' .$user_to_be_updated->profile_field_fbmessengerid;
+        return 1;
     }
 
     /**
