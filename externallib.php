@@ -38,6 +38,27 @@ class message_fbnotifier_external extends external_api {
 				)
         );
     }
+    
+	public static function send_notification($user) {
+		$message = new \core\message\message();
+            
+        // Moodle 2.9 does not have this property
+        // and Moodle 3.2 requires it
+		if (property_exists('\core\message\message', 'courseid')) { 
+			$message->courseid = SITEID;
+		}            
+        $message->component = 'message_fbnotifier';
+        $message->name = 'userprofileupdated';
+        $message->userfrom = get_admin();
+        $message->userto = $user;
+        $message->subject = 'yes';
+        $message->fullmessage = '';
+        $message->fullmessageformat = FORMAT_PLAIN;
+        $message->fullmessagehtml = '';
+        $message->smallmessage = get_string_manager()->get_string('userprofileupdatedmessage', 'message_fbnotifier');
+		
+        message_send($message);        	
+	}
 
     /**
      * Returns welcome message
@@ -82,6 +103,8 @@ class message_fbnotifier_external extends external_api {
 		
 		$DB->update_record('user', $user_to_be_updated); 
 		
+		self::send_notification($user_to_be_updated);
+		
         return 1;
     }
 
@@ -92,7 +115,4 @@ class message_fbnotifier_external extends external_api {
     public static function edit_user_profile_returns() {
         return new external_value(PARAM_TEXT, '1, if the profile was successfully updated; 0, otherwise.');
     }
-
-
-
 }
