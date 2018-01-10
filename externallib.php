@@ -34,7 +34,7 @@ class message_fbnotifier_external extends external_api {
         return new external_function_parameters(
                 array(
 					'username' => new external_value(PARAM_TEXT, 'The username of the user whose profile will be updated.'),
-					'facebook_id' => new external_value(PARAM_INT, 'The id of the user facebook account')
+					'facebook_id' => new external_value(PARAM_TEXT, 'The id of the user facebook account')
 				)
         );
     }

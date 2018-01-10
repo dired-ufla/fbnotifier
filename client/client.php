@@ -22,8 +22,8 @@
 // 5- Run this script directly from your browser: you should see 'Hello, FIRSTNAME'
 
 /// SETUP - NEED TO BE CHANGED
-$token = 'token';
-$domainname = 'domain';
+$token = '056f22c7be53271c3df7311a88f52aa9';
+$domainname = 'http://localhost/moodle33';
 
 // message/output/fbnotifier/client/client.php
 
@@ -31,11 +31,11 @@ $domainname = 'domain';
 $functionname = 'message_fbnotifier_edit_user_profile';
 
 /// PARAMETERS
-$params = array('paulojunior', 145);
+$params = array('admin', '1570071199725841');
 
 ///// XML-RPC CALL
 header('Content-Type: text/plain');
-$serverurl = $domainname . '/webservice/xmlrpc/server.php'. '?wstoken=' . $token;
+$serverurl = $domainname . '/webservice/xmlrpc/server.php?wstoken=' . $token;
 require_once('./curl.php');
 $curl = new curl;
 $post = xmlrpc_encode_request($functionname, $params);
