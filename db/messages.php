@@ -24,37 +24,47 @@
 
 $messageproviders = array (
     // A new announcement was created 
-    'newscommunicationcreated' => array (
-		'defaults' => array(
-            'fbnotifier' => MESSAGE_FORCED,
-        ),
-    ),
+    //'newscommunicationcreated' => array (
+	//	'defaults' => array(
+    //        'fbnotifier' => MESSAGE_FORCED, 
+    //        'email' => MESSAGE_DISALLOWED,            
+    //        'popup' => MESSAGE_DISALLOWED      
+    //   ),
+    //),
     
     // A new course module was created
-    'forumcommunicationcreated' => array (
-		'defaults' => array(
-            'fbnotifier' => MESSAGE_PERMITTED,
-        ),
-    ),
+    //'forumcommunicationcreated' => array (
+	//	'defaults' => array(
+    //        'fbnotifier' => MESSAGE_PERMITTED,
+    //       'email' => MESSAGE_DISALLOWED,            
+    //        'popup' => MESSAGE_DISALLOWED
+    //    ),
+    //),
     
     // User updated her/his profile
-    'userprofileupdated' => array (
-		'defaults' => array(
-            'fbnotifier' => MESSAGE_FORCED,
-        ),
-    ),
+    //'userprofileupdated' => array (
+	//	'defaults' => array(
+    //        'fbnotifier' => MESSAGE_FORCED,
+    //        'email' => MESSAGE_DISALLOWED,            
+    //        'popup' => MESSAGE_DISALLOWED
+    //    ),
+    //),
     
     // A new course module was created
-    'coursemodulecreated' => array (
-		'defaults' => array(
-            'fbnotifier' => MESSAGE_FORCED,
-        ),
-    ),
+    //'coursemodulecreated' => array (
+	//	'defaults' => array(
+    //        'fbnotifier' => MESSAGE_FORCED,
+    //        'email' => MESSAGE_DISALLOWED,            
+    //        'popup' => MESSAGE_DISALLOWED
+    //   ),
+    //),
     
     // A new course module receipt grades
-    'coursemodulegraded' => array (
-		'defaults' => array(
-            'fbnotifier' => MESSAGE_PERMITTED,
-        ),
-    )           
+    //'coursemodulegraded' => array (
+	//	'defaults' => array(
+    //        'fbnotifier' => MESSAGE_PERMITTED,
+    //        'email' => MESSAGE_DISALLOWED,            
+    //        'popup' => MESSAGE_DISALLOWED
+    //    ),
+    //)           
 );
