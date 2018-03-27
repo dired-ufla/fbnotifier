@@ -23,6 +23,6 @@
  */
 defined('MOODLE_INTERNAL') || die;
 
-$plugin->version   = 2018032616;         	// The current plugin version (Date: YYYYMMDDXX)
+$plugin->version   = 2018032700;         	// The current plugin version (Date: YYYYMMDDXX)
 $plugin->requires  = 2016120500;         	// Requires this Moodle version
 $plugin->component = 'message_fbnotifier'; 	// Full name of the plugin (used for diagnostics)
