@@ -24,47 +24,47 @@
 
 $messageproviders = array (
     // A new announcement was created 
-    //'newscommunicationcreated' => array (
-	//	'defaults' => array(
-    //        'fbnotifier' => MESSAGE_FORCED, 
-    //        'email' => MESSAGE_DISALLOWED,            
-    //        'popup' => MESSAGE_DISALLOWED      
-    //   ),
-    //),
+    'newscommunicationcreated' => array (
+		'defaults' => array(
+            'fbnotifier' => MESSAGE_FORCED, 
+            'email' => MESSAGE_DISALLOWED,            
+            'popup' => MESSAGE_DISALLOWED      
+       ),
+    ),
     
     // A new course module was created
-    //'forumcommunicationcreated' => array (
-	//	'defaults' => array(
-    //        'fbnotifier' => MESSAGE_PERMITTED,
-    //       'email' => MESSAGE_DISALLOWED,            
-    //        'popup' => MESSAGE_DISALLOWED
-    //    ),
-    //),
+    'forumcommunicationcreated' => array (
+		'defaults' => array(
+            'fbnotifier' => MESSAGE_PERMITTED,
+           'email' => MESSAGE_DISALLOWED,            
+            'popup' => MESSAGE_DISALLOWED
+        ),
+    ),
     
     // User updated her/his profile
-    //'userprofileupdated' => array (
-	//	'defaults' => array(
-    //        'fbnotifier' => MESSAGE_FORCED,
-    //        'email' => MESSAGE_DISALLOWED,            
-    //        'popup' => MESSAGE_DISALLOWED
-    //    ),
-    //),
+    'userprofileupdated' => array (
+		'defaults' => array(
+            'fbnotifier' => MESSAGE_FORCED,
+            'email' => MESSAGE_DISALLOWED,            
+            'popup' => MESSAGE_DISALLOWED
+        ),
+    ),
     
     // A new course module was created
-    //'coursemodulecreated' => array (
-	//	'defaults' => array(
-    //       'fbnotifier' => MESSAGE_FORCED,
-    //        'email' => MESSAGE_DISALLOWED,            
-    //        'popup' => MESSAGE_DISALLOWED
-    //   ),
-    //),
+    'coursemodulecreated' => array (
+		'defaults' => array(
+           'fbnotifier' => MESSAGE_FORCED,
+            'email' => MESSAGE_DISALLOWED,            
+            'popup' => MESSAGE_DISALLOWED
+       ),
+    ),
     
     // A new course module receipt grades
-    //'coursemodulegraded' => array (
-	//	'defaults' => array(
-    //        'fbnotifier' => MESSAGE_PERMITTED,
-    //        'email' => MESSAGE_DISALLOWED,            
-    //        'popup' => MESSAGE_DISALLOWED
-    //    ),
-    //)           
+    'coursemodulegraded' => array (
+		'defaults' => array(
+            'fbnotifier' => MESSAGE_PERMITTED,
+            'email' => MESSAGE_DISALLOWED,            
+            'popup' => MESSAGE_DISALLOWED
+        ),
+    )           
 );
